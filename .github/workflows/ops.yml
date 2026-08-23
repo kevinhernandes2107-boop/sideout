@@ -1,0 +1,26 @@
+name: Run production DB command
+
+on:
+  workflow_dispatch:
+    inputs:
+      sql:
+        description: 'SQL statement to run against the production database'
+        required: true
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - name: Run SQL against the production volume
+        run: |
+          flyctl ssh console -a sideout-app-api -C "python3 -c \"
+          import sqlite3
+          con = sqlite3.connect('/data/vball_app.db')
+          cur = con.cursor()
+          cur.execute('''${{ inputs.sql }}''')
+          con.commit()
+          print('rows affected:', cur.rowcount)
+          \""
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
