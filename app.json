@@ -23,7 +23,14 @@
     "android": {
       "edgeToEdge": true,
       "package": "com.sideout.app",
-      "versionCode": 1
+      "versionCode": 1,
+      "permissions": [
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.READ_CALENDAR",
+        "android.permission.WRITE_CALENDAR"
+      ]
     },
     "web": {
       "bundler": "metro"
@@ -56,6 +63,13 @@
         }
       ],
       "@react-native-community/datetimepicker"
-    ]
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "d862d828-db21-4814-8571-f7801d98b5fb"
+      }
+    },
+    "owner": "giovani.hl"
   }
 }
