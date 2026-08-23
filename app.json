@@ -1,0 +1,61 @@
+{
+  "expo": {
+    "name": "Sideout",
+    "slug": "sideout",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "sideout",
+    "userInterfaceStyle": "automatic",
+    "icon": "./assets/images/icon.png",
+    "splash": {
+      "image": "./assets/images/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#F4F6FB"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.sideout.app",
+      "buildNumber": "1",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "edgeToEdge": true,
+      "package": "com.sideout.app",
+      "versionCode": 1
+    },
+    "web": {
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Allow Sideout to use your location to center the map and help you host matches near you."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Allow Sideout to access your photos so you can set a profile picture."
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "color": "#0057B8"
+        }
+      ],
+      [
+        "expo-calendar",
+        {
+          "calendarPermission": "Allow Sideout to add matches and tournaments to your calendar."
+        }
+      ],
+      "@react-native-community/datetimepicker"
+    ]
+  }
+}

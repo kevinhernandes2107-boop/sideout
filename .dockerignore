@@ -1,0 +1,14 @@
+node_modules
+dist
+.expo
+android
+ios
+.vscode
+.claude
+assets
+src
+*.md
+*.db
+uploads
+.git
+.env

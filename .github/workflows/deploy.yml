@@ -1,0 +1,39 @@
+name: Deploy backend to Fly.io
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    concurrency: deploy-group
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+
+      - name: Ensure app exists
+        run: flyctl apps create sideout-app-api --org personal || true
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+      - name: Ensure persistent volume exists
+        run: |
+          flyctl volumes list --app sideout-app-api --json | grep -q sideout_data || \
+          flyctl volumes create sideout_data --app sideout-app-api --region iad --size 1 --yes
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+      - name: Set app secrets
+        run: |
+          flyctl secrets set --app sideout-app-api \
+            JWT_SECRET="${{ secrets.APP_JWT_SECRET }}"
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+
+      - name: Deploy
+        run: flyctl deploy --remote-only --app sideout-app-api
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
