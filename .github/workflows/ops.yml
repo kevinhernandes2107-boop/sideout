@@ -14,13 +14,7 @@ jobs:
       - uses: superfly/flyctl-actions/setup-flyctl@master
       - name: Run SQL against the production volume
         run: |
-          flyctl ssh console -a sideout-app-api -C "python3 -c \"
-          import sqlite3
-          con = sqlite3.connect('/data/vball_app.db')
-          cur = con.cursor()
-          cur.execute('''${{ inputs.sql }}''')
-          con.commit()
-          print('rows affected:', cur.rowcount)
-          \""
+          ENCODED_SQL=$(printf '%s' "${{ inputs.sql }}" | base64 -w0)
+          flyctl ssh console -a sideout-app-api -C "python3 -c \"import sqlite3, base64; sql = base64.b64decode('$ENCODED_SQL').decode(); con = sqlite3.connect('/data/vball_app.db'); cur = con.cursor(); cur.execute(sql); con.commit(); print('rows affected:', cur.rowcount)\""
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
