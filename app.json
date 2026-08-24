@@ -14,7 +14,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.sideout.app",
+      "bundleIdentifier": "com.kevinhernandes2107.sideout",
       "buildNumber": "1",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
@@ -22,7 +22,7 @@
     },
     "android": {
       "edgeToEdge": true,
-      "package": "com.sideout.app",
+      "package": "com.kevinhernandes2107.sideout",
       "versionCode": 1,
       "permissions": [
         "android.permission.ACCESS_COARSE_LOCATION",
