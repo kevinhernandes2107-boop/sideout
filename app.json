@@ -13,7 +13,7 @@
       "backgroundColor": "#F4F6FB"
     },
     "ios": {
-      "supportsTablet": true,
+      "supportsTablet": false,
       "bundleIdentifier": "com.kevinhernandes2107.sideout",
       "buildNumber": "1",
       "infoPlist": {
