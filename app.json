@@ -21,7 +21,6 @@
       }
     },
     "android": {
-      "edgeToEdge": true,
       "package": "com.kevinhernandes2107.sideout",
       "versionCode": 1,
       "permissions": [
